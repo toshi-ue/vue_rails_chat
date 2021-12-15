@@ -12,27 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_12_15_072047) do
 
-  create_table "calendars", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name", limit: 100, null: false
-    t.string "color"
-    t.boolean "visility", default: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "events", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name", limit: 100, null: false
-    t.datetime "start", null: false
-    t.datetime "end", null: false
-    t.boolean "timed", default: true
-    t.text "description"
-    t.string "color"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "calendar_id", null: false
-    t.index ["calendar_id"], name: "index_events_on_calendar_id"
-  end
-
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -46,5 +25,4 @@ ActiveRecord::Schema.define(version: 2021_12_15_072047) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "events", "calendars"
 end
