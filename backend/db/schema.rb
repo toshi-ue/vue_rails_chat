@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_062507) do
+ActiveRecord::Schema.define(version: 2021_12_16_065013) do
 
   create_table "likes", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_062507) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["message_id"], name: "index_likes_on_message_id"
+    t.index ["user_id", "message_id"], name: "index_likes_on_user_id_and_message_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
