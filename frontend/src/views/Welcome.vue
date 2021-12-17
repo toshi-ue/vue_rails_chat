@@ -1,14 +1,17 @@
 <template>
   <div class="container welcome">
-    <p>ようこそ！</p>
-    <LoginForm/>
+    <p>うぇるかむ!!</p>
+    <LoginForm />
+    <SignupForm />
   </div>
 </template>
 
 <script>
 import LoginForm from '../components/LoginForm'
+import SignupForm from '../components/SignupForm.vue'
+
 export default{
-  components: { LoginForm }
+  components: { LoginForm, SignupForm },
 }
 </script>
 
