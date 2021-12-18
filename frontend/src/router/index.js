@@ -50,13 +50,14 @@ const routes = [
   {
     path: '/',
     name: 'Welcome',
-    component: Welcome
+    component: Welcome,
+    beforeEnter: noRequireAuth
   },
   {
     path: '/chatroom',
     name: 'Chatroom',
     component: Chatroom,
-    beforeEnter: noRequireAuth
+    beforeEnter: requireAuth
   }
 ]
 
