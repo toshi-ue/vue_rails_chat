@@ -2,7 +2,7 @@
   <div class="container">
     <Navbar />
     <ChatWindow :messages="messages"/>
-    <NewChatForm />
+    <NewChatForm @connectCable="connectCable" />
   </div>
 </template>
 
@@ -38,6 +38,12 @@ export default {
       }catch(err){
         console.log(err)
       }
+    },
+    connectCable (message) {
+      this.messageChannel.perform('receive', {
+        message: message,
+        email: window.localStorage.getItem('uid')
+      })
     }
   },
   mounted () {
