@@ -2,16 +2,19 @@
   <div class="container">
     <Navbar />
     <ChatWindow :messages="messages"/>
+    <NewChatForm />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import ActionCable from 'actioncable'
 import Navbar from '../components/Navbar'
+import NewChatForm from '../components/NewChatForm'
 import ChatWindow from '../components/ChatWindow'
 
 export default {
-  components: { Navbar, ChatWindow },
+  components: { ChatWindow, Navbar, NewChatForm },
   data(){
     return{
       messages:[],
@@ -37,8 +40,19 @@ export default {
       }
     }
   },
-  mounted(){
-    this.getMessages()
+  mounted () {
+    const cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+    this.messageChannel = cable.subscriptions.create('RoomChannel', {
+      connected: () => {
+        this.getMessages()
+      },
+      received: () => {
+        this.getMessages()
+      }
+    })
+  },
+  beforeUnmount () {
+    this.messageChannel.unsubscribe()
   }
 }
 </script>
