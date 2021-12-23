@@ -34,7 +34,7 @@ export default {
   methods:{
     async getMessages(){
       try{
-        const res = await axios.get('http://localhost:3000/messages',{
+        const res = await axios.get(process.env.API_BASE_URL + '/messages',{
           headers:{
             uid: window.localStorage.getItem('uid'),
             "access-token": window.localStorage.getItem('access-token'),
@@ -58,7 +58,7 @@ export default {
     }
   },
   mounted () {
-    const cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+    const cable = ActionCable.createConsumer('ws://'+ process.env.ACTION_CABLE_URL +'/cable')
     this.messageChannel = cable.subscriptions.create('RoomChannel', {
       connected: () => {
         this.getMessages().then(() => {

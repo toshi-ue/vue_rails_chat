@@ -42,7 +42,7 @@ export default{
     },
     async createLike (messageId) {
       try {
-        const res = await axios.post(`http://localhost:3000/messages/${messageId}/likes`, {},
+        const res = await axios.post(process.env.API_BASE_URL + `/messages/${messageId}/likes`, {},
           {
             headers: {
               uid: this.uid,
@@ -62,7 +62,7 @@ export default{
     },
     async deleteLike(likeId) {
       try {
-        const res = await axios.delete(`http://localhost:3000/likes/${likeId}`,
+        const res = await axios.delete(process.env.API_BASE_URL + `/likes/${likeId}`,
           {
             headers: {
               uid: this.uid,

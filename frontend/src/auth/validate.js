@@ -11,7 +11,7 @@ const validate = async () => {
   const accessToken = window.localStorage.getItem('access-token')
 
   try {
-    const res = await axios.get('http://localhost:3000/auth/validate_token', {
+    const res = await axios.get(process.env.API_BASE_URL + '/auth/validate_token', {
       headers: {
         uid: uid,
         'access-token': accessToken,

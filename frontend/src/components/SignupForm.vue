@@ -32,7 +32,7 @@ export default {
       this.error = null
 
       try{
-        const res = await axios.post('http://localhost:3000/auth',{
+        const res = await axios.post(process.env.API_BASE_URL + '/auth',{
           name: this.name,
           email: this.email,
           password: this.password,

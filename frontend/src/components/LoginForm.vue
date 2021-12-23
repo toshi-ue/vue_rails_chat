@@ -26,7 +26,7 @@ export default {
       try {
         this.error = null
 
-        const res = await axios.post('http://localhost:3000/auth/sign_in', {
+        const res = await axios.post(process.env.API_BASE_URL + '/auth/sign_in', {
           email: this.email,
           password: this.password,
           }
