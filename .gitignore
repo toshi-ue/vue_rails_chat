@@ -53,3 +53,7 @@ frontend/*.sw?
 
 # vscode
 .vscode/
+
+# env files
+frontend/.env
+frontend/.env.*
